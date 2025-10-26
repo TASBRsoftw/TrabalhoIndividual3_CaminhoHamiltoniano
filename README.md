@@ -1,23 +1,65 @@
 
 # Projeto Caminho Hamiltoniano
 
-Este projeto implementa um algoritmo para encontrar Caminhos Hamiltonianos em grafos, conforme proposto no trabalho individual.
+Este projeto implementa um algoritmo para encontrar Caminhos Hamiltonianos em grafos, utilizando busca exaustiva com backtracking.
 
-## Estrutura
-- `src/main.py`: Ponto de entrada do projeto.
-- `src/hamiltonian.py`: Algoritmo de busca do caminho Hamiltoniano.
-- `src/utils.py`: Funções auxiliares para validação de caminhos.
+## Descrição do Projeto
 
-## Como executar
+O objetivo é determinar se existe um caminho Hamiltoniano em um grafo, ou seja, um caminho que visita todos os vértices exatamente uma vez e retorna ao ponto inicial. O algoritmo foi implementado em Python, com a seguinte lógica:
+
+### Explicação do Algoritmo (linha a linha)
+
+Arquivo: `src/hamiltonian.py`
+
+1. `def encontrar_caminho_hamiltoniano(grafo):`
+	- Função principal que inicia a busca pelo caminho Hamiltoniano.
+2. `n = len(grafo)`
+	- Calcula o número de vértices do grafo.
+3. `caminho = [0]`
+	- Começa o caminho pelo vértice 0.
+4. `visitados = set([0])`
+	- Marca o vértice 0 como visitado.
+5. `if busca(grafo, caminho, visitados, n):`
+	- Chama a função recursiva de busca.
+6. `return caminho`
+	- Se encontrar, retorna o caminho.
+7. `return None`
+	- Se não encontrar, retorna None.
+
+Função recursiva:
+
+1. `def busca(grafo, caminho, visitados, n):`
+	- Função que tenta expandir o caminho atual.
+2. `if len(caminho) == n:`
+	- Se todos os vértices foram visitados...
+3. `if grafo[caminho[-1]][caminho[0]] == 1:`
+	- ...e existe aresta de volta ao início, retorna True.
+4. Para cada vértice `v` não visitado e conectado ao último do caminho:
+	- Adiciona `v` ao caminho e marca como visitado.
+	- Chama recursivamente a busca.
+	- Se não encontrar, desfaz (backtrack) e tenta outro vértice.
+5. Se nenhum caminho válido for encontrado, retorna False.
+
+Arquivo: `src/main.py`
+
+1. Define um grafo de exemplo (matriz de adjacência).
+2. Chama `encontrar_caminho_hamiltoniano` e imprime o resultado.
+
+Arquivo: `src/utils.py`
+
+1. Função auxiliar para validar se um caminho é Hamiltoniano.
+
+## Como executar o projeto
+
+1. Certifique-se de ter o Python instalado.
+2. Navegue até a pasta do projeto.
+3. Execute o comando:
 
 ```bash
 python src/main.py
 ```
 
-## Exemplo de uso
-O projeto já inclui um exemplo de grafo no arquivo `main.py`. Basta executar para ver o resultado.
-
----
+O resultado será exibido no terminal, mostrando se existe ou não um caminho Hamiltoniano para o grafo definido.
 
 ## Relatório Técnico
 
