@@ -1,0 +1,2 @@
+# Requisitos do projeto Caminho Hamiltoniano
+# Nenhuma dependência externa necessária para execução básica
